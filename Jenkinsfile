@@ -17,6 +17,9 @@ pipeline {
         }
 
         stage("Test") {
+            when {
+                environment name: "FOO", value: "bar"
+            }
             options {
                 timeout(time: 2, unit: "MINUTES")
             }
