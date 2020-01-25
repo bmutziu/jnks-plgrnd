@@ -1,16 +1,27 @@
 pipeline {
     agent any
 
+    options {
+        timestamps()
+        ansiColor("xterm")
+    }
+
     stages {
         stage("Build") {
+            options {
+                timeout(time: 1, unit: "MINUTES")
+            }
             steps {
-                echo "Some code compilation here..."
+                sh 'printf "\\e[31mSome code compilation here...\\e[0m\\n"'
             }
         }
 
         stage("Test") {
+            options {
+                timeout(time: 2, unit: "MINUTES")
+            }
             steps {
-                echo "Some tests execution here..."
+                sh 'printf "\\e[31mSome tests execution here...\\e[0m\\n"'
             }
         }
     }
