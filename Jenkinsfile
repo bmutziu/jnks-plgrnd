@@ -67,8 +67,10 @@ pipeline {
                                         choice(name: 'RELEASE_SCOPE1', choices: 'patch\nronim\nrojam', description: 'What is the release eposc?'),
                                         ])
                    env.RELEASE_SCOPE0 = INPUT_PARAMS.RELEASE_SCOPE0
+                   env.RELEASE_SCOPE1 = INPUT_PARAMS.RELEASE_SCOPE1
                 }
                 echo "${env.RELEASE_SCOPE0}"
+                echo "${env.RELEASE_SCOPE1}"
             }
         }
 
