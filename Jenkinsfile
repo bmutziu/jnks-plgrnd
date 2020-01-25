@@ -27,12 +27,18 @@ def inputParamsString(dir) {
     list.join("\n")
 }
 
+def awesomeVersion = 'UNKNOWN'
+
 pipeline {
     agent any
 
     options {
         timestamps()
         ansiColor("xterm")
+    }
+
+    environment {
+        FOO = 'bar'
     }
 
     stages {
@@ -83,7 +89,16 @@ pipeline {
             }
             steps {
                 sh 'printf "\\e[31mSome tests execution here...\\e[0m\\n"'
+                script {
+                    awesomeVersion = sh(returnStdout: true, script: 'echo 0.0.1')
+                }
             }
+        }
+
+        stage('output_version') {
+          steps {
+            echo "awesomeVersion: ${awesomeVersion}"
+          }
         }
     }
 }
