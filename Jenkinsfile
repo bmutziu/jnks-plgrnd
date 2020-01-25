@@ -1,3 +1,11 @@
+def inputParams = inputParamsString(new File(pwd()))
+
+// Change `message` value to the message you want to display
+// Change `description` value to the description you want
+def selectedProperty = input( id: 'userInput', message: 'Choose properties file', parameters: [ [$class: 'ChoiceParameterDefinition', choices: inputParams, description: 'Properties', name: 'prop'] ])
+
+println "Property: $selectedProperty"
+
 pipeline {
     agent any
 
@@ -24,17 +32,6 @@ pipeline {
                 echo "The selected tag is: ${inputResult}"
             }
         }
-
-        stage('Browse files') {
-
-        def inputParams = inputParamsString(new File(pwd()))
-
-        // Change `message` value to the message you want to display
-        // Change `description` value to the description you want
-        def selectedProperty = input( id: 'userInput', message: 'Choose properties file', parameters: [ [$class: 'ChoiceParameterDefinition', choices: inputParams, description: 'Properties', name: 'prop'] ])
-
-        println "Property: $selectedProperty"
-       }
 
         stage("Build") {
             options {
