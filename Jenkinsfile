@@ -1,4 +1,4 @@
-import hudson.model.*
+node {
 def inputParams = inputParamsString(new File(pwd()))
 
 // Change `message` value to the message you want to display
@@ -6,6 +6,8 @@ def inputParams = inputParamsString(new File(pwd()))
 def selectedProperty = input( id: 'userInput', message: 'Choose properties file', parameters: [ [$class: 'ChoiceParameterDefinition', choices: inputParams, description: 'Properties', name: 'prop'] ])
 
 println "Property: $selectedProperty"
+
+}
 
 pipeline {
     agent any
