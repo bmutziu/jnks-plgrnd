@@ -1,3 +1,4 @@
+import hudson.model.*
 def inputParams = inputParamsString(new File(pwd()))
 
 // Change `message` value to the message you want to display
