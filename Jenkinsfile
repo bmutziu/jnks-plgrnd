@@ -62,10 +62,9 @@ pipeline {
                 sh 'printf "\\e[31mSome code compilation here...\\e[0m\\n"'
                 script {
                     env.RELEASE_SCOPE = input message: 'User input required', ok: 'Release!',
-                                        parameters:
-                                        [choice(name: 'RELEASE_SCOPE0', choices: 'patch\nminor\nmajor', description: 'What is the release scope?')
-                                        ],
-                                        [choice(name: 'RELEASE_SCOPE1', choices: 'patch\nronim\rojam', description: 'What is the release eposc?')
+                                        parameters: [
+                                        [choice(name: 'RELEASE_SCOPE0', choices: 'patch\nminor\nmajor', description: 'What is the release scope?')],
+                                        [choice(name: 'RELEASE_SCOPE1', choices: 'patch\nronim\rojam', description: 'What is the release eposc?')]
                                         ]
                 }
                 echo "${env.RELEASE_SCOPE['RELEASE_SCOPE0']}"
